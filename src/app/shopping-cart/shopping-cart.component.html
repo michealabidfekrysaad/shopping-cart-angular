@@ -1,0 +1,60 @@
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-10" [hidden]="!cartItems.length">
+            <table class="table table-striped" >
+                <thead>
+                  <tr>
+                    <th scope="col"></th>
+                    <th scope="col" class="smth">Name</th>
+                    <th scope="col">Price</th>
+                    <th scope="col" class="text-center">Quantity</th>
+                    <th scope="col">Total</th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of cartItems" style="padding: auto;">
+                    <!-- <a [routerLink]="['/view',item.id]">  -->
+                    <th scope="row" [routerLink]="['/view',item.id]" title="view product" >
+                        <img src="{{item.image}}">
+                    </th>
+                    <td class="align-middle text-dark smth">{{item.name}}</td>
+                  <!-- </a> -->
+                    <td class="align-middle">{{item.price }} EUR</td>
+                    <td class="align-middle">
+                        <div id = "leftbox" title="decrease" (click)="decreaseQty(item.id)">
+                            <i class="fa fa-minus"></i> 
+                        </div>  
+                          
+                        <div #qty id = "middlebox"> 
+                            {{item.quantity}}
+                        </div> 
+                          
+                        <div id = "rightbox" title="increase" (click)="increaseQty(item.id,item.maxQty)"> 
+                            <i class="fa fa-plus"></i>
+                        </div> 
+                    </td>
+                    <td class="align-middle text-primary" style="width: 90px;">
+                      {{item.quantity * item.price}}<span class="text-dark">EUR</span>
+                    </td>
+                    <td class="align-middle text-center" title="remove product" (click)="removeProd(item.id)">
+                      <i class="fa fa-times fa-2x"></i>
+                    </td>
+                  </tr>
+            
+                </tbody>
+              </table>
+              <div class="float-right" style="width: 150px;">
+              <b>Total Cost</b> : {{total}} EUR <br>
+              <button class="btn btn-outline-danger mt-2 float-right" (click)="deleteAll()">Delete All</button>
+              </div>
+      </div>
+      <div class="col-md-10" [hidden]="cartItems.length">
+        <h1>No Product added to cart !!</h1>
+        <button class="btn btn-outline-primary" [routerLink]="['/home']">Go add products</button>
+      </div>
+    </div>
+    <div class="text-center" [hidden]="!cartItems.length">
+      <button [routerLink]="['/order']" class="btn btn-outline-primary">Order Now</button>
+    </div>
+</div>

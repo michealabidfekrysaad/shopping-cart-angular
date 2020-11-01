@@ -1,0 +1,49 @@
+$handShape: pointer;
+$small: 450px;
+
+%message-shared {
+    text-align:center ;
+    border: 1px solid rgba($color: #7eabff, $alpha: 1.0);
+    width:24%; 
+    height:4%; 
+    cursor: $handShape;
+  }
+tr>th>img{
+    width: 50px;
+    cursor: $handShape;
+}
+#leftbox { 
+    float:left;  
+    @extend %message-shared;
+    &:hover{
+        color: white;
+        background-color: black;
+    }
+} 
+#middlebox{ 
+    float:left;  
+    width:52%; 
+    @extend %message-shared;
+    cursor: default;
+}
+ 
+#rightbox{ 
+    float:right; 
+    @extend %message-shared;
+    &:hover{
+        color: white;
+        background-color: black;
+    }
+}
+
+td>i{
+    color: red;
+    cursor: $handShape;
+}
+
+
+.smth {
+  @media screen and (max-width: $small) {
+    display: none;
+  }
+}

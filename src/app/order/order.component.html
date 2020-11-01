@@ -1,0 +1,75 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-12">
+      <h4><b>Attention:</b></h4>        
+        <p>
+          You will make order with <span class="text-primary">{{totalCart.length}}</span> products with total money 
+          <span class="text-primary">{{total}}</span>  EUR you can still increase, decrease your quantity and show more details
+          from <b><a [routerLink]="['/cart']">here</a></b>
+        </p>
+        <p *ngIf="totalCart.length">
+          Your products are: <span *ngFor="let item of totalCart">{{item.name}},<span class="text-primary">with Qty : {{item.quantity}} </span></span>
+        </p>
+    </div>
+  </div>
+  <div class="row pt-3">
+    <div class="col-md-12">
+    <form name="form" [formGroup]="userForm" (ngSubmit)="onSubmit()">
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputphone4">Email:</label>
+            <input type="email" class="form-control" id="inputEmail4" placeholder="Email" formControlName="email" email required
+            [ngClass]="{'is-invalid': userForm.get('email').touched && userForm.get('email').invalid}">
+            <div *ngIf="userForm.get('email').touched && userForm.get('email').invalid" class="invalid-feedback">
+              <div *ngIf="userForm.get('email').errors.required">Email is required</div>
+              <div *ngIf="userForm.get('email').errors.email">Email must be valid email address</div>
+            </div>
+        </div>
+          <div class="form-group col-md-6">
+            <label for="phoneNumber">Phone No:</label>
+
+            <input type="number" class="form-control" id="phoneNumber" placeholder="phone number" required 
+            name="phone" formControlName="phone" 
+            [ngClass]="{'is-invalid': userForm.get('phone').touched && userForm.get('phone').invalid}">
+
+            <div *ngIf="userForm.get('phone').touched && userForm.get('phone').invalid" class="invalid-feedback">
+              <div *ngIf="userForm.get('phone').errors.required">phone is required</div>
+              <div *ngIf="userForm.get('phone').errors.phoneNumberInvalid">phone must be valid 11 number ex:012*******</div>
+            </div>
+        </div>
+        </div>
+        <div class="form-group">
+          <label for="inputAddress">Address:</label>
+          <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" 
+          name="address" formControlName="address" required
+          [ngClass]="{'is-invalid': userForm.get('address').touched && userForm.get('address').invalid}">
+          <div *ngIf="userForm.get('address').touched && userForm.get('address').invalid" class="invalid-feedback">
+            <div *ngIf="userForm.get('address').errors.required">address is required</div>
+            <div *ngIf="userForm.get('address').errors.minlength">address must be at least 7 charachters</div>
+          </div>
+        </div>
+        <button type="submit" [disabled]="!userForm.valid"  class="btn btn-outline-primary mt-2" data-toggle="modal" data-target="#exampleModal">Submit order</button>
+      </form>
+    </div>
+    </div>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="exampleModalLabel">Thanks for shopping.</h3>
+      </div>
+      <div class="modal-body">
+        <p>
+        <span class="text-primary">{{email}}</span> has made an order with {{total}} EUR,<br>
+        you will recieved this order at <span class="text-primary">{{address}}</span>, <br>
+        if we having any problem will contact you on <span class="text-primary">{{phone}}</span>.
+      </p>
+      </div>
+      <div class="modal-footer">
+        <button [routerLink]="['/home']" type="button" class="btn btn-outline-primary"  data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

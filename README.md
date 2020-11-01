@@ -1,27 +1,48 @@
-# ShoppingList
+This is shopping-cart made by angular
+I make all the requirements as shown below:
+fisrt-->
+1. Show list of the products
+2. Each product card item should have:
+        a. Product image
+        b. Product name
+        c. Product category
+        d. Product price
+        e. “Add to cart” button
+        f. Product card will be clickable to show detailed view for the item clicked 
+second-->
+3. Page header should have:
+    a. User profile image with dropdown menu has 2 items
+        i.View/ Edit Profile
+        ii.Sign Out
+    b. Cart icon with dropdown menu with the items
+        i.Show selected products view with the actions on each product
+            1. Increase and decrease the number of items
+            2. Delete icon to remove the product from the shopping cart list
+            3. Review order button
+third-->
+4. Review Order should have:
+    a. List of selected items and each item should have:
+        i.Quantity
+        ii.Price per Item
+        iii. Total price: quantity * price per item
+    b. Order now action should navigate me to fill my details into a form
+        i.Address
+        ii.Phone number
+        iii. Email
+        iv.Submit action
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.2.0.
+and made most of Levels of Complexity:
+Standard complexity:
+    1.Your products list of data is static data.
+    2.Availability to navigate from home page (Product list view) to another view and via versa.
+    3.Availability to add items to the cart and review my order to be able to submit it.
+    4.Validate the above input described to be positive numbers only.
 
-## Development server
+Intermediate complexity:
+    1. In detail view show input value to increase/ decrease the number of the selected items in the shopping cart
+    2. Home page has a search form filter the presented list on user search keyword entered and return to all list once the search input has been cleared
+    3. Switch products list view between grid/ list view
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+ Advanced complexity​:
+    1. Listing the products list from API
+    2. Show the shopping cart in all pages as a fixed slide panel on the page side toggle once click on a link from the side to show the selected products any time and with notification with total number of selected items.   

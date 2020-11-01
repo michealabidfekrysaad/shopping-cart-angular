@@ -1,0 +1,36 @@
+$handShape: pointer;
+
+img{
+    max-height: 200px;
+    cursor: $handShape;
+  }
+  button{
+    &:hover {
+      background-color: rgba($color: #00076e, $alpha: 1.0);
+      color: white;
+    }
+  }
+  .page-link, .card-body{
+    cursor: $handShape;
+  }
+.custom-div{
+  position: absolute;
+  top: -7px;
+  left: 17px;
+  z-index: 1000;
+  width: 300px;
+  opacity: 0.9;
+}
+
+h2 {
+  max-height: 20px;
+}
+
+.active {
+  background-color: rgba($color: #00076e, $alpha: 1.0);
+  color: white;
+}
+
+
+
+

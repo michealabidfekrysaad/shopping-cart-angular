@@ -1,0 +1,29 @@
+<div class="container mt-5" *ngFor="let prod of product">
+    <div class="row">
+        <div class="col-md-3">
+            <img src="{{prod.ProductPicUrl}}" alt="{{prod.Category}}" class="rounded-lg img-fluid">
+        </div>
+        <div class="col-md-9">
+            <h1>{{ prod.Name }}</h1>
+            <p>Description : {{ prod.Description}}</p>
+            <p>Price : {{prod.Price}} {{prod.CurrencyCode}}</p>
+            <p>Width : {{prod.Width}} {{prod.DimUnit}}</p>
+            <p>Available in stock : {{prod.Quantity}}</p>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-md-12 d-flex flex-row-reverse">
+            <div class="ml-2">
+                <button class="btn btn-primary" (click)="addToCart(prod,prod.Quantity)">addToCart</button>
+            </div>
+            <div class="ml-2 text-right">
+                <label for="quantity">quantity:&nbsp;&nbsp;</label>
+                <input #inputQty type="number" value=1 id="quantity" class="w-50 mt-2" min="1"
+                    oninput="validity.valid||(value='');">
+            </div>
+        </div>
+    </div>
+    <div *ngIf="productExist" class="alert alert-primary w-50 mt-2 text-danger" role="alert">
+        {{theError}}
+    </div>
+</div>

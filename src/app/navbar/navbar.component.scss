@@ -1,0 +1,32 @@
+.avatar {
+    vertical-align: middle;
+    width: 30px;
+    height: 30px;
+    border-radius: 30%;
+    margin-right: 10px;
+  }
+  .is-active{
+    font-weight: bolder;
+    background-color: rgba($color: #6b60ff, $alpha: 0.1);
+    border-radius: 20%;
+    border-bottom: 2px solid #111edf;
+  }
+  .small-width{
+    width: 50px;
+    height: 50px;
+  }
+  .img-nav{
+    width: 80px;
+    height: 50px;
+    border-radius: 50%;
+  }
+  i{
+    cursor: pointer;
+  }
+  div.form-inline {
+    .dropdown-cart{
+      width: 300px;
+      box-shadow: 3px 3px 2px 2px #007bff;
+    }
+  }
+

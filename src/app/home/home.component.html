@@ -1,0 +1,73 @@
+
+<div class="text-center">
+  <input #scroll class="form-control w-75 mt-3" style="display: inline;" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="&#61442;  Start searching for product name, price, description ...">
+  <button #btnGrid style="display: none;" (click)="onChangeGrid()" class="btn btn-primary ml-3" title="change to grid"><i class="fa fa-th-large"></i></button>
+  <button #btnList style="display: inline;" (click)="onChangeList()" class="btn btn-outline-primary ml-3" title="change to list"><i class="fa fa-bars"></i></button>
+</div>
+  <div #grid style="display: block;" class="container mt-1" >
+    <div class="row">
+      <div class="col-lg-4 col-md-6 col-sm-12 mt-4" 
+            *ngFor="let product of products | filter:searchText | slice:startIndex:endIndex;index as i;">
+            <div *ngIf="productExist && (product.ProductId == itemAdded)" class="alert alert-danger mt-2 text-danger custom-div" role="alert">
+              {{product.Name}} exist in your cart !!<i class="fa float-right mt-1 fa-times-circle"></i>
+            </div>
+            <div *ngIf="productIsNotExist && (product.ProductId == itemAdded)" class="alert alert-success mt-2 .text-success custom-div" role="alert">
+              {{product.Name}} added successfully <i class="float-right mt-1 fa fa-check-circle"></i>
+            </div>
+        <div class="card border-primary" style="width: 19rem;">
+          <a (click)="getNavigation('view', product.ProductId)">
+          <img class="card-img-top" [src]="product.ProductPicUrl!= null ? product.ProductPicUrl : myImgUrl" alt="{{product.Category}}">
+        </a>
+        <!-- src="{{product.ProductPicUrl}}"  -->
+          <div class="card-body" style="cursor: default;">
+            <h1 class="card-title">{{product.Name | slice:0:20}}</h1>
+            <p class="card-text">Price: {{product.Price}}-{{product.CurrencyCode}}</p>
+            <p class="card-text">Category: {{product.Category}}</p>
+          </div>
+          <div class="card-body" style="cursor: default;">
+          <button class="btn btn-primary"(click)="addToCart(product)">Add to cart</button>
+          <button class="btn btn-outline-primary float-right" (click)="getNavigation('view', product.ProductId)">Details</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div #list  style="display: none;" class="container mt-1">
+    <div class="row">
+      <div class="col-md-12" *ngFor="let product of products | filter:searchText | slice:startIndex:endIndex;index as i;">
+        <div *ngIf="productExist && (product.ProductId == itemAdded)" class="alert alert-danger mt-2 text-danger custom-div" role="alert">
+          {{product.Name}} exist in your cart !!<i class="fa float-right mt-1 fa-times-circle"></i>
+        </div>
+        <div *ngIf="productIsNotExist && (product.ProductId == itemAdded)" class="alert alert-success mt-2 .text-success custom-div" role="alert">
+          {{product.Name}} added successfully <i class="float-right mt-1 fa fa-check-circle"></i>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+              <img style="cursor: default;" class="card-img-top" [src]="product.ProductPicUrl!= null ? product.ProductPicUrl : myImgUrl" alt="{{product.Category}}">
+            </div>
+          <div class="col-md-8">
+            <a (click)="getNavigation('view', product.ProductId)">
+            <div class="card-body">
+              <h1 class="card-title">{{product.Name | slice:0:20}}</h1>
+              <p class="card-text">Price: {{product.Price}}-{{product.CurrencyCode}}</p>
+              <p class="card-text">Category: {{product.Category}}</p>
+              <p class="card-text">Description: {{product.Description | slice:0:50}} <b>....</b></p>
+            </div>
+          </a>
+            <div class="card-body">
+            <button class="btn btn-primary"(click)="addToCart(product)">Add to cart</button>
+            <button class="btn btn-outline-primary ml-4" (click)="getNavigation('view', product.ProductId)">Details</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="d-flex justify-content-center mt-5 mb-5" *ngIf="!searchText">
+    <nav aria-label="Page navigation example" >
+      <ul class="pagination">
+        <li *ngFor="let i of getArrayPagination(123); let in = index" class="page-item">
+          <a #pagination class="page-link" [ngClass]="{active: in == currentPage}" (click)="updateIndex(in,scroll)">{{ in+1 }}</a></li>
+      </ul>
+    </nav>
+  </div>
